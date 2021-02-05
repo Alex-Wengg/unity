@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,17 +25,19 @@ public class Spawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
+
         fTimer -= Time.deltaTime;
+        print(fTimer);
         if (fTimer <= 0)
         {
             fTimer = fTimeIntervals;
-
-            Vector3 v3SpawnPos = transform.position;
+            Vector3 v3SpawnPos = new Vector3(transform.position.x *2*  Random.value, transform.position.y, transform.position.z * 2 * Random.value);
             v3SpawnPos += Vector3.right * v3SpawnPosJitter.x * (Random.value - 0.5f);
             v3SpawnPos += Vector3.forward * v3SpawnPosJitter.z * (Random.value - 0.5f);
             v3SpawnPos += Vector3.up * v3SpawnPosJitter.y * (Random.value - 0.5f);
-
             Instantiate(goCreate, v3SpawnPos, Quaternion.identity);
         }
+   
     }
 }
